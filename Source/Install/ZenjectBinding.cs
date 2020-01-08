@@ -28,9 +28,27 @@ namespace Zenject
         [SerializeField]
         BindTypes _bindType = BindTypes.Self;
 
+        [Tooltip("When set and this binding is on the same object as a GameObjectContext, this will bind the given components to it as normal but also any parent context. This is useful when using ZenjectBinding to bind a nested facade which has its own GameObjectContext.  If your ZenjectBinding is for a component that is not a nested facade then it is not necessary to check this.")]
+        [SerializeField] 
+        bool _useParentContext;
+
+        Context _parentContext;
+
         public bool UseSceneContext
         {
             get { return _useSceneContext; }
+        }
+
+        public bool UseParentContext
+        {
+            get => _useParentContext;
+            set => _useParentContext = value;
+        }
+
+        public Context ParentContext
+        {
+            get => _parentContext;
+            set => _parentContext = value;
         }
 
         public Context Context
